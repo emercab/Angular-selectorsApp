@@ -13,13 +13,25 @@
         }
       </select>
 
-      <label for="cboCountry" class="mt-3">Country</label>
-      <select class="form-control" id="cboCountry" formControlName="country">
-        <option value="">-- Select Country --</option>
-        <!-- @for (country of countries; track $index) {
-          <option [value]="country">{{ country | titlecase }}</option>
-        } -->
-      </select>
+      @if (countriesByRegion.length > 0) {
+        <label for="cboCountry" class="mt-3">Country</label>
+        <select class="form-control" id="cboCountry" formControlName="country">
+          <option value="">-- Select Country --</option>
+          @for (country of countriesByRegion; track $index) {
+            <option [value]="country.cca3">{{ country.name | titlecase }}</option>
+          }
+        </select>
+      }
+
+      @if (borders.length > 0) {
+        <label for="cboBorder" class="mt-3">Border</label>
+        <select class="form-control" id="cboBorder" formControlName="border">
+          <option value="">-- Select Border --</option>
+          @for (border of borders; track $index) {
+            <option [value]="border.cca3">{{ border.name | titlecase }}</option>
+          }
+        </select>
+      }
       
     </form>
   </div>
